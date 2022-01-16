@@ -7,6 +7,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 
+import javax.mail.MessagingException;
+
 @SpringBootApplication
 public class GmailSenderApplication {
 
@@ -19,9 +21,11 @@ public class GmailSenderApplication {
 	}
 
 	@EventListener(ApplicationReadyEvent.class)
-	public void triggerMail() {
+	public void triggerMail() throws MessagingException {
 
-		emailSender.sendMail("Receiver_Email", "example", "example");
+		emailSender.sendMail("your_email",
+				"This is subject", "This is body",
+				"/home/test/Downloads/sqlErrrorVA2QA.png");
 	}
 
 }
